@@ -34,8 +34,7 @@ automatically in just a few seconds.
 <script type="text/javascript">
   appInsights.trackPageView("AbelIndex.html");
   console.log("let's see if this works");
-  for (i=0;i<5;i++) {
-    throw "Error" +i;
-  }
+  console.log("trying to throw  error");
+  throw "MyError";
 </script>
 </html>
