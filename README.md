@@ -56,6 +56,8 @@ Open up another instance of a different browser. If you opened up the first set 
 ![](readmeImages/2018-11-09-09-23-10.png)
 
 ## Session script
+
+### Slide Deck
 1. I am so excited to be here today to talk to you all about DevOps. Now, I know some of you are thinking, cool DevOps! And some others are probably thinking, DevOps? Who cares? That's just CI/CD Pipelines right? Why should I care about that?
  ![](readmeImages/2018-11-09-09-25-15.png)
 
@@ -99,245 +101,281 @@ Open up another instance of a different browser. If you opened up the first set 
 1. In today's session, we will be concentrating on Azure Pipelines, where we will deploy our code faster yet safer!
 ![](readmeImages/2018-11-09-10-06-46.png)
 
-1. Bring up main browser with all the tabs and bring up tab 
+### Demo
+[Bring up main browser with all the tabs and bring up tab 1]
 
-   So the code for TailWind is all in github, and we need to build a CI/CD pipeline from github to Azure Pipelines. That's super easy to do with the Azure Pipelines market place extension. Lets go into the marketplace and search for the Azure Pipeline Extension
+So the code for TailWind is all in github, and we need to build a CI/CD pipeline from github to Azure Pipelines. That's super easy to do with the Azure Pipelines market place extension. Lets go into the marketplace and search for the Azure Pipeline Extension
 
-   ![](readmeImages/2018-11-09-10-50-00.png)
+![](readmeImages/2018-11-09-10-50-00.png)
 
-   ![](readmeImages/2018-11-09-10-51-07.png)
+![](readmeImages/2018-11-09-10-51-07.png)
 
-   ![](readmeImages/2018-11-09-10-52-12.png)
+![](readmeImages/2018-11-09-10-52-12.png)
 
-1. I've already installed the extension so let's just go in and configure this
+I've already installed the extension so let's just go in and configure this
 
-   ![](readmeImages/2018-11-09-10-52-57.png)
+![](readmeImages/2018-11-09-10-52-57.png)
 
-   ![](readmeImages/2018-11-09-10-53-32.png)
+![](readmeImages/2018-11-09-10-53-32.png)
 
-   ![](readmeImages/2018-11-09-10-53-55.png)
+![](readmeImages/2018-11-09-10-53-55.png)
 
-1. And we will configure it to create a CI pipeline for our Tailwind Front End repo
+And we will configure it to create a CI pipeline for our Tailwind Front End repo
     
-   ![](readmeImages/2018-11-09-10-55-14.png)
+![](readmeImages/2018-11-09-10-55-14.png)
 
-1. This takes us to the login screen of Azure DevOps
+This takes us to the login screen of Azure DevOps
 
-   ![](readmeImages/2018-11-09-10-56-02.png)
+![](readmeImages/2018-11-09-10-56-02.png)
 
-   ![](readmeImages/2018-11-09-10-57-27.png)
+![](readmeImages/2018-11-09-10-57-27.png)
 
-1. Where it will take you through a wizard to help you set up a CI pipeline quickly
+Where it will take you through a wizard to help you set up a CI pipeline quickly
 
-   ![](readmeImages/2018-11-09-12-10-36.png)
+![](readmeImages/2018-11-09-12-10-36.png)
 
-   ![](readmeImages/2018-11-09-14-16-22.png)
+![](readmeImages/2018-11-09-14-16-22.png)
 
-   ![](readmeImages/2018-11-09-14-16-38.png)
+![](readmeImages/2018-11-09-14-16-38.png)
 
-   Notice Azure Pipelines analyzes the repo and offers you templates that make sense for the technolgogies and languages in your repo. This repo is a node.js app so let's chose the Node.js template
+Notice Azure Pipelines analyzes the repo and offers you templates that make sense for the technolgogies and languages in your repo. This repo is a node.js app so let's chose the Node.js template
 
-   ![](readmeImages/2018-11-09-14-18-15.png)
+![](readmeImages/2018-11-09-14-18-15.png)
 
-   This creates for us an **azure-pipelines.yml** file. So it creates for you a yaml build pipeline. The build engine in Azure pipelines is basically a task runner. It does one task after another after another. And you can describe the tasks either with a visual editor or with a yaml file. There are many benefits to using yaml builds or **Pipeline as Code**. Primarily, now your build pipeline is checked right into source control so your build pipeline is versioned right alongside your source code. If you need more info on yaml builds, just follow the docs link which will take you to our docs page which descrive everything you will need to know.
+This creates for us an **azure-pipelines.yml** file. So it creates for you a yaml build pipeline. The build engine in Azure pipelines is basically a task runner. It does one task after another after another. And you can describe the tasks either with a visual editor or with a yaml file. There are many benefits to using yaml builds or **Pipeline as Code**. Primarily, now your build pipeline is checked right into source control so your build pipeline is versioned right alongside your source code. If you need more info on yaml builds, just follow the docs link which will take you to our docs page which descrive everything you will need to know.
    
-   ![](readmeImages/2018-11-09-14-23-27.png) 
+![](readmeImages/2018-11-09-14-23-27.png) 
    
-   ![](readmeImages/2018-11-09-14-24-23.png)
+![](readmeImages/2018-11-09-14-24-23.png)
 
-   Let's go ahead and save and run this build
+Let's go ahead and save and run this build
 
-   ![](readmeImages/2018-11-09-14-26-03.png)
+![](readmeImages/2018-11-09-14-26-03.png)
 
-   ![](readmeImages/2018-11-09-14-26-41.png) 
+![](readmeImages/2018-11-09-14-26-41.png) 
 
-   ![](readmeImages/2018-11-09-14-27-39.png)
+![](readmeImages/2018-11-09-14-27-39.png)
 
-   This saves the azure-pipeines.yml file into our git repo which in turn fires off our build. And what happens in the build?  First it downloads all the source code from git hub, then it executes the build steps described in the yml file. So in our case it does
+This saves the azure-pipeines.yml file into our git repo which in turn fires off our build. And what happens in the build?  First it downloads all the source code from git hub, then it executes the build steps described in the yml file. So in our case it does
 
-    - Downloads the source code
-    - Installs Node.js
-    - Does an npm install and build
+ - Downloads the source code
+ - Installs Node.js
+ - Does an npm install and build
 
-   Now this is fine but I want to customize the build a little, and I want to show you all what the visual editor looks like. So let's hope into the visual editor
+Now this is fine but I want to customize the build a little, and I want to show you all what the visual editor looks like. So let's hope into the visual editor
 
-   ![](readmeImages/2018-11-09-14-38-59.png)
+![](readmeImages/2018-11-09-14-38-59.png)
 
-   ![](readmeImages/2018-11-09-14-40-24.png)
+![](readmeImages/2018-11-09-14-40-24.png)
 
-   So here, you can see each individual step and now, i'm configuring my build to 
+So here, you can see each individual step and now, i'm configuring my build to 
 
-      - Install npm
-      - Setup the DB connection strings
-      - Build the app because we are creating a staic web app out of the node.js app
-      - Zip everything up so it's ready to be deployed
-      - publish the zip of the website as our build artifact back to Azure Pipelines
+   - Install npm
+   - Setup the DB connection strings
+   - Build the app because we are creating a staic web app out of the node.js app
+   - Zip everything up so it's ready to be deployed
+   - publish the zip of the website as our build artifact back to Azure Pipelines
 
-   The build system in Azure Pipelines is 100% configurable to do ANYTHING. Any language targeting any platform! And the way you customize this build is by adding and removing tasks.
+The build system in Azure Pipelines is 100% configurable to do ANYTHING. Any language targeting any platform! And the way you customize this build is by adding and removing tasks.
 
-   ![](readmeImages/2018-11-09-14-48-23.png)
+![](readmeImages/2018-11-09-14-48-23.png)
 
-   ![](readmeImages/2018-11-09-14-49-20.png)
+![](readmeImages/2018-11-09-14-49-20.png)
 
-   Where out of the box, there are a little over a hunred tasks that you can drag over to the left and just start using.
+Where out of the box, there are a little over a hunred tasks that you can drag over to the left and just start using.
 
-   And what if hyou want to do something that's not out of the box?
+And what if hyou want to do something that's not out of the box?
 
-   ![](readmeImages/2018-11-09-14-52-17.png)
+![](readmeImages/2018-11-09-14-52-17.png)
 
-   Not a big deal, just go to our marketplace where our partners have created over 500 build and release tasks that you can just download and start using.
+Not a big deal, just go to our marketplace where our partners have created over 500 build and release tasks that you can just download and start using.
 
-   And if you want to do something that's not out of the box and not in the marketplace? It's still not a problem because you can write your own custom tasks. Custom tasks are nothing more than powershell or node.js. So what that means is that anything you can do from the command line, you can easily get this build and release system to do as well. Which translates into you can make this build and release system do ANYTHING! Any language targeting any platform!
+And if you want to do something that's not out of the box and not in the marketplace? It's still not a problem because you can write your own custom tasks. Custom tasks are nothing more than powershell or node.js. So what that means is that anything you can do from the command line, you can easily get this build and release system to do as well. Which translates into you can make this build and release system do ANYTHING! Any language targeting any platform!
 
-   Ok, so we have a visual build that describe the customized build that I want to happen, so the easiest way to add this to our YAML build is to 
+Ok, so we have a visual build that describe the customized build that I want to happen, so the easiest way to add this to our YAML build is to 
 
-   ![](readmeImages/2018-11-09-14-55-49.png)
+![](readmeImages/2018-11-09-14-55-49.png)
 
-   view the yaml that gets generated by this visual build
+view the yaml that gets generated by this visual build
 
-   Let's go ahead and copy it, and then we'll just paste this into our azure-pipelines.yml file
+Let's go ahead and copy it, and then we'll just paste this into our azure-pipelines.yml file
 
-   ![](readmeImages/2018-11-09-14-56-59.png)
+![](readmeImages/2018-11-09-14-56-59.png)
 
-   Let's go back into VSCode and we'll pull down the latest changes with a git pull
+Let's go back into VSCode and we'll pull down the latest changes with a git pull
 
-   ![](readmeImages/2018-11-09-14-58-24.png)
+![](readmeImages/2018-11-09-14-58-24.png)
 
-   and now let's paste the yaml and replace everything in azure-pipelines.yml 
+and now let's paste the yaml and replace everything in azure-pipelines.yml 
 
-   ![](readmeImages/2018-11-09-15-00-32.png)
+![](readmeImages/2018-11-09-15-00-32.png)
 
-   And now lets push that yaml file back into GitHub. And once the code hits github, it will kick off a new build
+And now lets push that yaml file back into GitHub. And once the code hits github, it will kick off a new build
 
-   ![](readmeImages/2018-11-09-15-06-54.png)
+![](readmeImages/2018-11-09-15-06-54.png)
 
-   ![](readmeImages/2018-11-09-15-07-14.png)
+![](readmeImages/2018-11-09-15-07-14.png)
    
-   And what's this build doing? It's downloading the latest source from github, including the azure-pipelines.yml file. It then kicks off a build and executes the build steps described in the yml file! Pipeline as code!!!. And then it will
+And what's this build doing? It's downloading the latest source from github, including the azure-pipelines.yml file. It then kicks off a build and executes the build steps described in the yml file! Pipeline as code!!!. And then it will
 
-      - Do an npm install
-      - Setup my db connections
-      - Build app
-      - zip up the website so it's ready to be deployed
-      - publish the zip file as the build artifact for this build back to Azure Pipelines
+   - Do an npm install
+   - Setup my db connections
+   - Build app
+   - zip up the website so it's ready to be deployed
+   - publish the zip file as the build artifact for this build back to Azure Pipelines
 
-   Oh and if you notice, right now, I'm just hardcoding my database end points. If we want to become more secure, we can even store secrets in the pipeline and then use the secrets in the yaml file. 
+Oh and if you notice, right now, I'm just hardcoding my database end points. If we want to become more secure, we can even store secrets in the pipeline and then use the secrets in the yaml file. 
 
-   To set up secrets let's edit our build
+To set up secrets let's edit our build
 
-   ![](readmeImages/2018-11-09-15-11-11.png)
+![](readmeImages/2018-11-09-15-11-11.png)
 
-   ![](readmeImages/2018-11-09-15-13-28.png)
+![](readmeImages/2018-11-09-15-13-28.png)
 
-   Where we can now add variables, lock them to encrypt it and now, if we go back to our azure-pipelines.yml file, we can reference the secret build variables by adding line 32 and 33
+Where we can now add variables, lock them to encrypt it and now, if we go back to our azure-pipelines.yml file, we can reference the secret build variables by adding line 32 and 33
 
-   ![](readmeImages/2018-11-09-15-15-56.png)
+![](readmeImages/2018-11-09-15-15-56.png)
 
-   Ok, looks like our build has completed
+Ok, looks like our build has completed
 
-   ![](readmeImages/2018-11-09-15-17-08.png)
+![](readmeImages/2018-11-09-15-17-08.png)
 
-   And we get a nice build report that shows everything that happened during the build includeing tests. 
+And we get a nice build report that shows everything that happened during the build includeing tests. 
 
-   ![](readmeImages/2018-11-09-15-17-42.png)
+![](readmeImages/2018-11-09-15-17-42.png)
 
-   We can even examine the build artifact by clicking on the drop
+We can even examine the build artifact by clicking on the drop
 
-   ![](readmeImages/2018-11-09-15-19-02.png)
+![](readmeImages/2018-11-09-15-19-02.png)
 
-   Where you can see we created a zip file of the website
+Where you can see we created a zip file of the website
 
-   ![](readmeImages/2018-11-09-15-19-29.png)
+![](readmeImages/2018-11-09-15-19-29.png)
 
-   So just like that, we can create a build pipeline. But we still need to create a release pipeline to release this app. To do that, we'll just click on the Release button
+So just like that, we can create a build pipeline. But we still need to create a release pipeline to release this app. To do that, we'll just click on the Release button
 
-   ![](readmeImages/2018-11-09-15-20-41.png)
+![](readmeImages/2018-11-09-15-20-41.png)
 
-   Which brings up the visual editor for the release pipeline. Tailwind Traders website will be hosted in Azure App Service, so we can just select the Azure App Service Deployment Template
+Which brings up the visual editor for the release pipeline. Tailwind Traders website will be hosted in Azure App Service, so we can just select the Azure App Service Deployment Template
 
-   ![](readmeImages/2018-11-09-15-22-21.png)
+![](readmeImages/2018-11-09-15-22-21.png)
 
-   And now we just need to finish configuring the release. To configure a release, first we create the stage or environment. The first environment I want to deploy to is my staging environment so I'll replace the name with `Staging`
+And now we just need to finish configuring the release. To configure a release, first we create the stage or environment. The first environment I want to deploy to is my staging environment so I'll replace the name with `Staging`
 
-   ![](readmeImages/2018-11-09-15-24-17.png)
+![](readmeImages/2018-11-09-15-24-17.png)
 
-   After defining your stage, next, you get to define the steps that will happen to deploy your app to that stage. So clicking on the steps link will take us to the task runner for this stage.
+After defining your stage, next, you get to define the steps that will happen to deploy your app to that stage. So clicking on the steps link will take us to the task runner for this stage.
 
-   ![](readmeImages/2018-11-09-15-25-22.png)
+![](readmeImages/2018-11-09-15-25-22.png)
 
-   And since we've already selected the App Service Deployment template, there's not a whole lot of configuring left to do. We just need to chose our azure subscription and chose the app service we want to deploy to. In this case, I want to deploy to the Tailwind Front End staging app service.
+And since we've already selected the App Service Deployment template, there's not a whole lot of configuring left to do. We just need to chose our azure subscription and chose the app service we want to deploy to. In this case, I want to deploy to the Tailwind Front End staging app service.
 
-   ![](readmeImages/2018-11-09-15-27-16.png)
+![](readmeImages/2018-11-09-15-27-16.png)
 
-   Now that we have defined a stage, and defined the steps needed to deploy my app, we can choose manual approvers before and after each stage. For the Staging environment, let's just create a post depoyment approver. That way, if a new build kicks off, it will automatically deploy into my staging environment with no manual intervention
+Now that we have defined a stage, and defined the steps needed to deploy my app, we can choose manual approvers before and after each stage. For the Staging environment, let's just create a post depoyment approver. That way, if a new build kicks off, it will automatically deploy into my staging environment with no manual intervention
 
-   ![](readmeImages/2018-11-09-15-29-23.png)
+![](readmeImages/2018-11-09-15-29-23.png)
 
-   ![](readmeImages/2018-11-09-15-33-43.png)
+![](readmeImages/2018-11-09-15-33-43.png)
 
-   I'll just add myself as a manual approver for this demo. You can add a list of people where everyone on the list has to approve before it will pass through the manual gate. or you can create a group of people and if one person in the group approves, it will pass through the gate. Or you can use a combintion of lists and groups. So you can tighten down security as much as you need to.
+I'll just add myself as a manual approver for this demo. You can add a list of people where everyone on the list has to approve before it will pass through the manual gate. or you can create a group of people and if one person in the group approves, it will pass through the gate. Or you can use a combintion of lists and groups. So you can tighten down security as much as you need to.
 
-   Now, let's add another stage to deploy to our production environment. Hover over the environment and select clone to clone the environment.
+Now, let's add another stage to deploy to our production environment. Hover over the environment and select clone to clone the environment.
 
-   ![](readmeImages/2018-11-09-15-35-50.png)
+![](readmeImages/2018-11-09-15-35-50.png)
 
-   And we will name the new stage Prod
+And we will name the new stage Prod
 
-   ![](readmeImages/2018-11-09-15-46-22.png)
+![](readmeImages/2018-11-09-15-46-22.png)
 
-   And now we need to tweak the release steps a little bit so it deploys to the production environment.
+And now we need to tweak the release steps a little bit so it deploys to the production environment.
 
-   Click on the steps in the prod environment 
+Click on the steps in the prod environment 
 
-   ![](readmeImages/2018-11-09-15-48-12.png)
+![](readmeImages/2018-11-09-15-48-12.png)
 
-   And change the app service to the production app service.
+And change the app service to the production app service.
 
-   ![](readmeImages/2018-11-09-15-48-41.png)
+![](readmeImages/2018-11-09-15-48-41.png)
 
-   Click save and voila! We just created a release pipeline that releases Tailwind Traders front end into the staging environment, and then after approvers into the production environment.
+Click save and voila! We just created a release pipeline that releases Tailwind Traders front end into the staging environment, and then after approvers into the production environment.
 
-   Let's see the release in action so we'll click release and click Create Release
+Let's see the release in action so we'll click release and click Create Release
 
-   ![](readmeImages/2018-11-09-15-50-51.png)
+![](readmeImages/2018-11-09-15-50-51.png)
 
-   And then we'll creat a release using the latest build by clicking Create
+And then we'll creat a release using the latest build by clicking Create
 
-   ![](readmeImages/2018-11-09-15-51-44.png)
+![](readmeImages/2018-11-09-15-51-44.png)
 
-   ![](readmeImages/2018-11-09-15-52-21.png)
+![](readmeImages/2018-11-09-15-52-21.png)
 
-   Where we can now watch the release happen live. 
-   ![](readmeImages/2018-11-09-15-52-52.png)
+ Where we can now watch the release happen live. 
+ ![](readmeImages/2018-11-09-15-52-52.png)
 
-   And what is happening? The release is going to the build's drop location. It's going to pick up the deployment bits from the drop location and it will deploy those bits into the staging environment based off of the steps that we configured for the staging stage.
+And what is happening? The release is going to the build's drop location. It's going to pick up the deployment bits from the drop location and it will deploy those bits into the staging environment based off of the steps that we configured for the staging stage.
 
-   ![](readmeImages/2018-11-09-15-55-57.png)
+![](readmeImages/2018-11-09-15-55-57.png)
 
-   Just like with the build the release is fully customizable where you can make it do anything. It's just a task runner, so like the build pipeline, you customize the release steps by adding and removing task runner. Out of the box, you get hundreds of tasks with many hundreds more coming from the marketplace. And you can write your own custom tasks that can make this release system do anything.
+Just like with the build the release is fully customizable where you can make it do anything. It's just a task runner, so like the build pipeline, you customize the release steps by adding and removing task runner. Out of the box, you get hundreds of tasks with many hundreds more coming from the marketplace. And you can write your own custom tasks that can make this release system do anything.
 
-   ![](readmeImages/2018-11-09-15-57-01.png)
+![](readmeImages/2018-11-09-15-57-01.png)
 
-   Ok, looks like the release finished release in the staging environment and it is now waiting for a post deployment approval
+Ok, looks like the release finished release in the staging environment and it is now waiting for a post deployment approval
 
-   ![](readmeImages/2018-11-09-15-58-58.png)
+![](readmeImages/2018-11-09-15-58-58.png)
 
-   ![](readmeImages/2018-11-09-15-59-50.png)
+![](readmeImages/2018-11-09-15-59-50.png)
 
-   Before we approve it, let's check out our staging environment to see if the new code actually go deployed.
+Before we approve it, let's check out our staging environment to see if the new code actually go deployed.
 
-   - Bring up browser with the front end in the two tabs, bring up tab 1
+- Bring up browser with the front end in the two tabs, bring up tab 1
 
-     ![](readmeImages/2018-11-09-16-00-54.png)
+  ![](readmeImages/2018-11-09-16-00-54.png)
 
-   - Click refresh
+- Click refresh
      
-     ![](readmeImages/2018-11-09-16-02-23.png)
+  ![](readmeImages/2018-11-09-16-02-23.png)
 
-   And Voila! Code deployed into the staging environment!
+And Voila! Code deployed into the staging environment!
 
-   
+We can now go back to Azure Pipelines, and click the post deployment approval
 
+![](readmeImages/2018-11-10-07-07-47.png)
 
+![](readmeImages/2018-11-10-07-08-07.png)
 
+![](readmeImages/2018-11-10-07-08-33.png)
+
+And now the code flows into the Prod environent
+
+![](readmeImages/2018-11-10-07-09-12.png)
+
+And what is it doing? Release management is going to the drop location for this specific build. The very same drop location where it picked up the bits for staging. And it will deploy the EXACT same bits it deployed into staging will now be deployed into production. There is no new build that's kicked off. There's no way stray code can slip in. Its the exact same bits.
+
+Ok, looks like the bits have been deployed and we are now waiting for a post deployment approval.
+
+Let's check out production
+
+![](readmeImages/2018-11-10-07-11-24.png)
+
+And refresh
+
+![](readmeImages/2018-11-10-07-11-35.png)
+
+And Bam!  New code deployed all the way to prod. So now I'll approve the post deployment approval
+
+![](readmeImages/2018-11-10-07-12-21.png)
+
+![](readmeImages/2018-11-10-07-12-27.png)
+
+![](readmeImages/2018-11-10-07-12-33.png)
+
+And now, we have built our first build and release pipeline where any checkin from github will kick off our build and release through staging all the way into production.
+
+Cool huh?
+
+But you know what? we can do even better. Remember Azure Pipelines is fully customizable where we can make the release system do anything. Including Advanced DevOps best practices. Things like Blue Green deployments, where we first deploy into an environment that's an exact replica of what's in production. Do our testing in it, and when we r ready, we swap production with the BlueGreen environment. So now, what was in production is in my BlueGreen spot and what was in my Blue Green spot is now in production. Something like that is easily doable using Azure Pipelines. Even something like testing in production, where we deploy new code and route just some of the traffic, like 10% to the new code and route the rest of the traffic to the old code. This way, we can slowly and carefully gather telemetry, make sure we are delivering value. And if things look good, we can slowly bump up the traffic to 20, 30 eventually 100 percent.
+
+In fact, using the power of Azure Pipelines and Azure App service, this is really pretty trivial to do. Check this out.
 
