@@ -155,9 +155,9 @@ Open up another instance of a different browser. If you opened up the first set 
 
    This saves the azure-pipeines.yml file into our git repo which in turn fires off our build. And what happens in the build?  First it downloads all the source code from git hub, then it executes the build steps described in the yml file. So in our case it does
 
-       - Downloads the source code
-       - Installs Node.js
-       - Does an npm install and build
+    - Downloads the source code
+    - Installs Node.js
+    - Does an npm install and build
 
    Now this is fine but I want to customize the build a little, and I want to show you all what the visual editor looks like. So let's hope into the visual editor
 
@@ -209,10 +209,135 @@ Open up another instance of a different browser. If you opened up the first set 
 
    And now lets push that yaml file back into GitHub. And once the code hits github, it will kick off a new build
 
-   ![](readmeImages/2018-11-09-15-03-05.png)
+   ![](readmeImages/2018-11-09-15-06-54.png)
 
-   ![](readmeImages/2018-11-09-15-03-38.png)
+   ![](readmeImages/2018-11-09-15-07-14.png)
+   
+   And what's this build doing? It's downloading the latest source from github, including the azure-pipelines.yml file. It then kicks off a build and executes the build steps described in the yml file! Pipeline as code!!!. And then it will
 
-   And what's this build doing? It's downloading the latest source from github, includeing the azure-pipelines.yml file. It then kicks off a build and executes the build steps described in the yml file! Pipeline as code!!!. And then it will
+      - Do an npm install
+      - Setup my db connections
+      - Build app
+      - zip up the website so it's ready to be deployed
+      - publish the zip file as the build artifact for this build back to Azure Pipelines
 
-      -  
+   Oh and if you notice, right now, I'm just hardcoding my database end points. If we want to become more secure, we can even store secrets in the pipeline and then use the secrets in the yaml file. 
+
+   To set up secrets let's edit our build
+
+   ![](readmeImages/2018-11-09-15-11-11.png)
+
+   ![](readmeImages/2018-11-09-15-13-28.png)
+
+   Where we can now add variables, lock them to encrypt it and now, if we go back to our azure-pipelines.yml file, we can reference the secret build variables by adding line 32 and 33
+
+   ![](readmeImages/2018-11-09-15-15-56.png)
+
+   Ok, looks like our build has completed
+
+   ![](readmeImages/2018-11-09-15-17-08.png)
+
+   And we get a nice build report that shows everything that happened during the build includeing tests. 
+
+   ![](readmeImages/2018-11-09-15-17-42.png)
+
+   We can even examine the build artifact by clicking on the drop
+
+   ![](readmeImages/2018-11-09-15-19-02.png)
+
+   Where you can see we created a zip file of the website
+
+   ![](readmeImages/2018-11-09-15-19-29.png)
+
+   So just like that, we can create a build pipeline. But we still need to create a release pipeline to release this app. To do that, we'll just click on the Release button
+
+   ![](readmeImages/2018-11-09-15-20-41.png)
+
+   Which brings up the visual editor for the release pipeline. Tailwind Traders website will be hosted in Azure App Service, so we can just select the Azure App Service Deployment Template
+
+   ![](readmeImages/2018-11-09-15-22-21.png)
+
+   And now we just need to finish configuring the release. To configure a release, first we create the stage or environment. The first environment I want to deploy to is my staging environment so I'll replace the name with `Staging`
+
+   ![](readmeImages/2018-11-09-15-24-17.png)
+
+   After defining your stage, next, you get to define the steps that will happen to deploy your app to that stage. So clicking on the steps link will take us to the task runner for this stage.
+
+   ![](readmeImages/2018-11-09-15-25-22.png)
+
+   And since we've already selected the App Service Deployment template, there's not a whole lot of configuring left to do. We just need to chose our azure subscription and chose the app service we want to deploy to. In this case, I want to deploy to the Tailwind Front End staging app service.
+
+   ![](readmeImages/2018-11-09-15-27-16.png)
+
+   Now that we have defined a stage, and defined the steps needed to deploy my app, we can choose manual approvers before and after each stage. For the Staging environment, let's just create a post depoyment approver. That way, if a new build kicks off, it will automatically deploy into my staging environment with no manual intervention
+
+   ![](readmeImages/2018-11-09-15-29-23.png)
+
+   ![](readmeImages/2018-11-09-15-33-43.png)
+
+   I'll just add myself as a manual approver for this demo. You can add a list of people where everyone on the list has to approve before it will pass through the manual gate. or you can create a group of people and if one person in the group approves, it will pass through the gate. Or you can use a combintion of lists and groups. So you can tighten down security as much as you need to.
+
+   Now, let's add another stage to deploy to our production environment. Hover over the environment and select clone to clone the environment.
+
+   ![](readmeImages/2018-11-09-15-35-50.png)
+
+   And we will name the new stage Prod
+
+   ![](readmeImages/2018-11-09-15-46-22.png)
+
+   And now we need to tweak the release steps a little bit so it deploys to the production environment.
+
+   Click on the steps in the prod environment 
+
+   ![](readmeImages/2018-11-09-15-48-12.png)
+
+   And change the app service to the production app service.
+
+   ![](readmeImages/2018-11-09-15-48-41.png)
+
+   Click save and voila! We just created a release pipeline that releases Tailwind Traders front end into the staging environment, and then after approvers into the production environment.
+
+   Let's see the release in action so we'll click release and click Create Release
+
+   ![](readmeImages/2018-11-09-15-50-51.png)
+
+   And then we'll creat a release using the latest build by clicking Create
+
+   ![](readmeImages/2018-11-09-15-51-44.png)
+
+   ![](readmeImages/2018-11-09-15-52-21.png)
+
+   Where we can now watch the release happen live. 
+   ![](readmeImages/2018-11-09-15-52-52.png)
+
+   And what is happening? The release is going to the build's drop location. It's going to pick up the deployment bits from the drop location and it will deploy those bits into the staging environment based off of the steps that we configured for the staging stage.
+
+   ![](readmeImages/2018-11-09-15-55-57.png)
+
+   Just like with the build the release is fully customizable where you can make it do anything. It's just a task runner, so like the build pipeline, you customize the release steps by adding and removing task runner. Out of the box, you get hundreds of tasks with many hundreds more coming from the marketplace. And you can write your own custom tasks that can make this release system do anything.
+
+   ![](readmeImages/2018-11-09-15-57-01.png)
+
+   Ok, looks like the release finished release in the staging environment and it is now waiting for a post deployment approval
+
+   ![](readmeImages/2018-11-09-15-58-58.png)
+
+   ![](readmeImages/2018-11-09-15-59-50.png)
+
+   Before we approve it, let's check out our staging environment to see if the new code actually go deployed.
+
+   - Bring up browser with the front end in the two tabs, bring up tab 1
+
+     ![](readmeImages/2018-11-09-16-00-54.png)
+
+   - Click refresh
+     
+     ![](readmeImages/2018-11-09-16-02-23.png)
+
+   And Voila! Code deployed into the staging environment!
+
+   
+
+
+
+

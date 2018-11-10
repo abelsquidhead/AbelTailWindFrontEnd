@@ -29,6 +29,8 @@ steps:
    cat > .env << EOF
    PRODUCT_SERVICE_BASE_URL=https://abeltailwindproductservice.azurewebsites.net
    INVENTORY_SERVICE_BASE_URL=https://abelinventoryserviceapi.azurewebsites.net
+   DATABASE_USER= $(Database.User)
+   DATABASE_PASSWORD=$(Database.Password)
    EOF
    # Use the environment variables input below to pass secret variables to this script
 
