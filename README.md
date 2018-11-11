@@ -375,7 +375,35 @@ And now, we have built our first build and release pipeline where any checkin fr
 
 Cool huh?
 
-But you know what? we can do even better. Remember Azure Pipelines is fully customizable where we can make the release system do anything. Including Advanced DevOps best practices. Things like Blue Green deployments, where we first deploy into an environment that's an exact replica of what's in production. Do our testing in it, and when we r ready, we swap production with the BlueGreen environment. So now, what was in production is in my BlueGreen spot and what was in my Blue Green spot is now in production. Something like that is easily doable using Azure Pipelines. Even something like testing in production, where we deploy new code and route just some of the traffic, like 10% to the new code and route the rest of the traffic to the old code. This way, we can slowly and carefully gather telemetry, make sure we are delivering value. And if things look good, we can slowly bump up the traffic to 20, 30 eventually 100 percent.
+But you know what? we can do even better. Remember Azure Pipelines is fully customizable where we can make the release system do anything. Including Advanced DevOps best practices. Things like Blue Green deployments, where we first deploy into an environment that's an exact replica of what's in production. Do our testing in it, and when we r ready, we swap production with the BlueGreen environment. So now, what was in production is in my BlueGreen spot and what was in my Blue Green spot is now in production. Something like that is easily doable using Azure Pipelines. Even something like AB Testing, where we deploy new code and route just some of the traffic, like 10% to the new code and route the rest of the traffic to the old code. This way, we can slowly and carefully gather telemetry, make sure we are delivering value. And if things look good, we can slowly bump up the traffic to 20, 30 eventually 100 percent.
 
 In fact, using the power of Azure Pipelines and Azure App service, this is really pretty trivial to do. Check this out.
+
+[Go back to main browser,  `Tab 2 - Tailwind Front End App Service in Portal`]
+
+Here is the azure portal page for my app service which is hosting the Tailwind Traders front end.
+
+![](readmeImages/2018-11-10-16-31-18.png)
+
+To implement AB testing, scroll down to **Development Tools** and select **Testing In Production**
+
+![](readmeImages/2018-11-10-16-38-42.png)
+
+Here we get to add a deployment slot. Deployment slots are... think of them like a virtual directory for your web app. 
+
+![](readmeImages/2018-11-10-16-39-37.png)
+
+We'll create a slot and then we can direct what percentage of the traffic we want routed to what slot.
+
+I'll name this new slot **ABTesting**
+
+![](readmeImages/2018-11-10-16-41-09.png)
+
+And this creates me my slot. Now, I just need to add in the percentage of traffic that I want to route to the slot. For this demo, I'll pick 50%.
+
+![](readmeImages/2018-11-10-16-42-35.png)
+
+And that's all I need to do on the infrastructure side. To impleent AB testing in my pipeline, all I'll need to do is make some simple changes.
+
+[Bring up browser tab with Azure Pipeline]
 
