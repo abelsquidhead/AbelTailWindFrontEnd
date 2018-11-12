@@ -9,7 +9,7 @@ This is the demo script for the DevOps session. In this session, we will cover
 - Walk through real world build and release pipelines for Tailwind Trading.
 
 ## Setup
-This session's demos are done all using the browser. Open up an instance of your favorite browser and have the following tabs
+This session's demos are done using the browser and one instance of VSCode. Open up an instance of your favorite browser and have the following tabs
 
 1. `Tab 1 - Git hub repo for tailwind front end` https://github.com/abelsquidhead/AbelTailWindFrontEnd 
 ![](readmeImages/2018-11-09-07-48-15.png)
@@ -43,6 +43,10 @@ Open up another instance of a different browser. If you opened up the first set 
 ![](readmeImages/2018-11-09-09-14-45.png)
 2. `Tab 2 - Tailwind Traders Production` https://abeltailwindfrontend4.azurewebsites.net/
 ![](readmeImages/2018-11-09-09-15-37.png)
+
+This demo will also use VSCode to make some code changes
+
+1. VSCode open with src/style.css open
 
 ## CLEANUP
 
@@ -403,7 +407,31 @@ And this creates me my slot. Now, I just need to add in the percentage of traffi
 
 ![](readmeImages/2018-11-10-16-42-35.png)
 
-And that's all I need to do on the infrastructure side. To impleent AB testing in my pipeline, all I'll need to do is make some simple changes.
+And that's all I need to do on the infrastructure side. To implement AB testing in my pipeline, all I'll need to do is make some simple changes.
 
 [Bring up browser tab with Azure Pipeline]
+
+![](readmeImages/2018-11-12-08-09-39.png)
+
+First, I'm going to clone my prod environment and we'll call it Prod B
+
+![](readmeImages/2018-11-12-08-11-45.png)
+
+![](readmeImages/2018-11-12-08-12-08.png)
+
+Next, I'll rename my Prod stage to Prod A
+
+![](readmeImages/2018-11-12-08-12-48.png)
+
+And we do need to tweak the deployment step, because instead of deploying the new code to the production slot, we will deploy the new code to the ABTesting slot we just created 
+
+![](readmeImages/2018-11-12-08-16-41.png)
+
+And save and Bam. That's all we have to do. Now, to see this in action let's go make some code changes.
+
+Let's turn the background of our app purple
+
+![](readmeImages/2018-11-12-08-29-50.png)
+
+Save it, and commit
 
