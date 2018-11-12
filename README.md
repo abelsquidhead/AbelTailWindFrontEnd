@@ -433,5 +433,48 @@ Let's turn the background of our app purple
 
 ![](readmeImages/2018-11-12-08-29-50.png)
 
-Save it, and commit
+Save it, and commit back to github
 
+![](readmeImages/2018-11-12-10-45-24.png)
+
+This kicks off our our build
+
+![](readmeImages/2018-11-12-10-45-58.png)
+
+And what is happening in this build?
+
+![](readmeImages/2018-11-12-10-46-16.png)
+
+The build engine is downloading the latest changes from github including the azure-piplines.yml file. Then the build engine starts executing all the steps defined in the yaml file.  
+
+   - NPM Install
+   - Setup DB Connection strings and endpoints
+   - Build App into static files
+   - Zip everything up so the build artificat is the zip file of the web app all ready to be deployed
+   - published build artifact back to Azure Pipelines.
+
+And while this is running, I wanted to show you one more thing. Because right now, our database user and password is just stored as plain text in my yml file
+
+![](readmeImages/2018-11-12-11-08-59.png)
+
+We can easily store and use secrets in Azure Pipleines by editing the build
+
+![](readmeImages/2018-11-12-11-09-59.png)
+
+Where we can store secrets for our pipelines which are encrypted so no one can see them. And to use them, in your yml file, we would just reference them like this
+
+![](readmeImages/2018-11-12-11-11-57.png)
+
+Ok, looks like the build has finished and now it's kicked off the release pipeline
+
+![](readmeImages/2018-11-12-11-14-17.png)
+
+So what is it doing? Release Management is downloading the build artificat from the build. In this case, it's the zip file of the compiled application and now it is deploying this new code. The one with the purple background into the staging environment. And here it is, deployed in staging. 
+
+![](readmeImages/2018-11-12-11-15-03.png)
+
+Approving this
+
+![](readmeImages/2018-11-12-11-18-05.png)
+
+And now, the bits start flowing in 
