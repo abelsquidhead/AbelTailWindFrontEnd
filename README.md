@@ -467,7 +467,7 @@ Where we can store secrets for our pipelines which are encrypted so no one can s
 
 Ok, looks like the build has finished and now it's kicked off the release pipeline
 
-![](readmeImages/2018-11-12-11-14-17.png)
+![](readmeImages/2018-11-12-11-45-59.png)
 
 So what is it doing? Release Management is downloading the build artificat from the build. In this case, it's the zip file of the compiled application and now it is deploying this new code. The one with the purple background into the staging environment. And here it is, deployed in staging. 
 
@@ -475,6 +475,49 @@ So what is it doing? Release Management is downloading the build artificat from 
 
 Approving this
 
-![](readmeImages/2018-11-12-11-18-05.png)
+![](readmeImages/2018-11-12-11-46-41.png)
 
-And now, the bits start flowing in 
+And now, the bits start flowing into the Prod A slot
+
+![](readmeImages/2018-11-12-11-47-13.png)
+
+So what is really happeing? Release management is going to the drop location, the very same drop location for this specific build and download the build artifacts. The VERY same build artifcats as what we just deployed into staging? It will now deploy those exact same bits into the ABTesting slot. There was no extra build, no extra compile, no extra bundling. These will guarentee be the exact same bits.
+
+Ok, now that we've deployed into the TestAB slot
+
+![](readmeImages/2018-11-12-11-48-48.png)
+
+Let's refresh our production environment and we see...
+
+![](readmeImages/2018-11-12-11-50-32.png)
+
+Why isn't the background purple?  Remember, we are now routing 50% of the traffic to the old code and 50% of the traffic to the new code. So let's open up another browser
+
+[Go back to the main browser, open new tab, copy and paste front end prod url]
+
+And...
+
+![](readmeImages/2018-11-12-11-54-41.png)
+
+Voila! 50% of our traffic routed through the old code, 50% of the traffic routed through the new code. Now, we can collect telemetry to help us determine if we are delivering value. And if they are, we can approve this and the code 
+
+![](readmeImages/2018-11-12-11-55-39.png)
+
+Will flow 100% to the new code.  
+
+![](readmeImages/2018-11-12-12-17-53.png)
+
+As you can see, we can easily set up our pipeline so we can increment the flow from 10% to 20% and slowly all the way up to 100%. And if we are not giving value, we can also set up the pipeline to stop the deployment and roll back.
+
+![](readmeImages/2018-11-12-12-18-45.png)
+
+
+Pretty cool huh. I have just shown you 
+
+   - Creating a CI/CD Pipeline
+   - Implementing advanced DevOps best practices like AB Testing using Azure Pipelines and Azure App Service
+
+But we can do even better!
+
+
+
