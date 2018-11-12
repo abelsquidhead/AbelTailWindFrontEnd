@@ -598,8 +598,75 @@ And all of this can be done easily.  But let me tell you a confession. I may be 
 
 Using the power of Azure DevOps Projects, with just a few clicks, I can create everything I need to get started. A Team Project in Azure Pipelines. Sample code in the language that you pick in my repo. A CI/CD pipeline that makes sense for the technolgoies picked, and infrastructure provisioned for you in Azure. And I get ALL of this with just a couple of clicks. Let me show you what I mean.
 
+[`Tab 4 - Azure Portal` ]
+![](readmeImages/2018-11-09-07-50-20.png)
 
+From the azure portal, let's go and create an Azure DevOps project. 
 
+![](readmeImages/2018-11-12-14-36-35.png)
+
+Now the very first thing it's going to ask you is what language do you want to use. You can pick .NET of course, node, php, java, python, ruby go with more languages to come!
+
+![](readmeImages/2018-11-12-14-37-25.png)
+
+For this demo, let's pick node and click next
+
+Now it's asking what framework do you want to use. For this demo, let's just build a simple Node.js app.
+
+![](readmeImages/2018-11-12-14-38-06.png)
+
+And now, it's asking what infrastructure do you want to host your app? For this demo, let's host our node.js app in a kubernetes cluster.
+
+![](readmeImages/2018-11-12-14-38-53.png)
+
+And now, it's asking what instance of Azure DevOps do you want to use to orchestrate everything. You can create a brand new one from here, or use one that already exists. For this demo, I'll pick my demo account, I'll name the project IgniteTour, name my Kubernetes Cluster IgniteTourCluster, click done and....
+
+![](readmeImages/2018-11-12-14-42-10.png)
+
+Bam, that is LITERALLY all you need to do. Now, just kick back and let Azure build everything out for you. A team project in Azure Pipelines. Sample code in the langauge that you picked, In our case, a node js sample app, sitting in a git repo. A CI/CD Pipeline that makes sense for the technologies picked, so a node js app running in a docker container, hosted in a kubernetes cluster. And infrastructure provisioned for you in Azure. So a kubernetes cluster deployed for us in Azure. And when it's all done doing this, you get a portal blade that looks like this
+
+[`Tab 5 - Ignite 1 DevOps Project Dashboard` ]
+![](readmeImages/2018-11-12-15-07-18.png)
+
+Where on the left hand side you see the CI/CD Pipeline. And on the right hand side, you see all the infrastructure that got provisioned for you in Azure uncluding our kubernetes cluster, instance of application isight and our web app running in our Kubernetes cluster.
+
+And all of these links are deep links into the resource itself. For instance 
+
+![](readmeImages/2018-11-12-15-07-43.png)
+
+Clicking on the link to the code will take us to the git repo holding our node js app.
+
+![](readmeImages/2018-11-12-15-18-12.png)
+
+Notice, this is just a node js app using DevOps best practices so we are using Arm templates for Infrastructure as Code and also using Helm charts to package up our kubernetes app.
+
+For the build pipeline
+
+![](readmeImages/2018-11-12-15-19-19.png)
+
+We create for you a build pipeline that makes sense for the technologies picked. So in this case you get a build pipeline that creates a docker image for the node.js sample app, pushes the image into an instance of Azure Container Registry and then packages the app up as a helm package.
+
+![](readmeImages/2018-11-12-15-20-20.png)
+
+Next, for the release pipeline
+
+![](readmeImages/2018-11-12-15-20-46.png)
+
+![](readmeImages/2018-11-12-15-21-12.png)
+
+We create for you a release pipeline that makes sense for the technologies picked.
+
+![](readmeImages/2018-11-12-15-21-43.png)
+
+We create a pipeline that creates your azure infrastructure using the ARM templates, which includes the kubernetes cluster in Azure Kubernetes Service. And then we deploy our app using Helm.
+
+And after deploying the app, the app is no available by clicking on the app endpoint from the portal blade
+
+![](readmeImages/2018-11-12-15-22-55.png)
+
+Which launches our sample app deployed in Azure Kubernetes Service
+
+![](readmeImages/2018-11-12-15-23-37.png)
 
 
 ### Azure DevOps project
