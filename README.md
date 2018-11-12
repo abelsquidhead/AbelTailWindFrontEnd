@@ -517,7 +517,97 @@ Pretty cool huh. I have just shown you
    - Creating a CI/CD Pipeline
    - Implementing advanced DevOps best practices like AB Testing using Azure Pipelines and Azure App Service
 
-But we can do even better!
+But we can do even better! Using Azure Pipelines, we have the ability to create automated approval gates based off of continuous monitoring. So now, we can automate the approval process from one stage to the next using AI!!!
+
+For instance, right I've set up my staging environment to be monitored using Application Insight. 
+
+[`Tab 3 - Application Insight for TailWind Traders Staging Environment`]
+![](readmeImages/2018-11-12-12-41-33.png)
+
+And here, I've set up an alert
+
+![](readmeImages/2018-11-12-12-43-02.png)
+
+Looking for uncaught browser based javascript alert. And if there are too many of these, this will create an alert in Application Insight.
+
+![](readmeImages/2018-11-12-12-43-43.png)
+
+So the idea now is for me to deploy into the staging environment. I can then run my tests, users can start testing in the staging environment. And if Application insight finds too many alerts or browser based errors, it will automatically stop my deployment so I don't deploy into production. And if everything looks good, it will automatically with no user approvals, flow into the production environment.
+
+To set this up, we set up alerting in application insight for the staging environment, and then we need to tweak the release pipeline to use automated gates.
+
+![](readmeImages/2018-11-12-13-12-55.png)
+ 
+ First, I'm going to remove the manual approver from the post deployment step
+
+ ![](readmeImages/2018-11-12-13-38-22.png)
+
+And then, I'll add an automated gate of type Query Azure Monitor alerts
+
+![](readmeImages/2018-11-12-13-40-46.png)
+
+Now, I just need to select the correct azure subscription, resource group and resource name and alert name
+
+![](readmeImages/2018-11-12-13-40-56.png)
+
+Set up my pulling frequency and and gate timeout, we'll save this and that's all we need to do. We have now set up an automated gate based off of continuous monitoring using Appication Insight.
+
+Now when we queue a release,
+
+![](readmeImages/2018-11-12-13-43-01.png)
+
+![](readmeImages/2018-11-12-13-43-21.png)
+
+It will deploy my code into the staging environment. The code that I'm deploying has a bunch of browser errors whenenever the index page is hit
+
+![](readmeImages/2018-11-12-13-44-22.png)
+
+So Now
+
+![](readmeImages/2018-11-12-13-44-33.png)
+
+After the code has been deployed, let's refresh our staging environment a couple of times
+
+[Refresh staging 5 times]
+
+And this should generate a bunch of application insight errors from the browser
+
+[`Tab 3 - Application Insight for TailWind Traders Staging Environment`]
+
+![](readmeImages/2018-11-12-13-46-57.png)
+
+![](readmeImages/2018-11-12-13-47-04.png)
+
+And here, you can see application Insight has caught a bunch of browser errors
+
+Which means now, when my gate hits, it detects the alerts from App Insight, fails the gate so now the broken code automatically does not get pushed to the prod environments!!!
+
+And BAM! Gate detected Application Insight alerts. Failed and release died in staging.
+
+![](readmeImages/2018-11-12-13-49-46.png)
+
+SUPER COOL Stuff!!!
+
+So what have I shown you so far?
+
+   - We can easily create CI/CD Pipelines for any language targeting any platform
+   - We can easily implement pretty much anything in our pipelines, including advanced DevOps best practices like AB Testing.
+   - We can even enable automated approval gates using Continuous monitoring so now we can deploy faster yet even safer!!!
+
+And all of this can be done easily.  But let me tell you a confession. I may be a DevOps practitioner, but I'm not a huge fan of building out CI/CD Pipelines by hand. I mean, I recognize the importance of good pipelines, but I love to write code! That's what makes me happy. And with the power of Azure, i can get started super easily with just a couple of clicks. And what do I mean by "getting started?" 
+
+Using the power of Azure DevOps Projects, with just a few clicks, I can create everything I need to get started. A Team Project in Azure Pipelines. Sample code in the language that you pick in my repo. A CI/CD pipeline that makes sense for the technolgoies picked, and infrastructure provisioned for you in Azure. And I get ALL of this with just a couple of clicks. Let me show you what I mean.
+
+
+
+
+
+### Azure DevOps project
+
+### Full Power of Azure Pipelines
+
+### More examples of automated deployment gates
+
 
 
 
