@@ -668,13 +668,116 @@ Which launches our sample app deployed in Azure Kubernetes Service
 
 ![](readmeImages/2018-11-12-15-23-37.png)
 
+And once again. You get all of this with just a couple of clicks!!
 
-### Azure DevOps project
+So million dollar question. How do you get your real code into this pipeline instead of the sampel app?
 
-### Full Power of Azure Pipelines
+Simple enough
 
-### More examples of automated deployment gates
+Going to the git repo
+
+![](readmeImages/2018-11-12-15-37-15.png)
+
+This is just a plain old git repo. So simple enough to clone this onto our hard drive, remove the application folder, copy our application into the local repo. Commit and push those changes back up to Azure Repos which will kick off the CI/CD pipeline with our real code which then get's pushed all the way into production!
+
+There's another way we can do this too by editing the build pipeline.
+
+![](readmeImages/2018-11-12-15-39-18.png)
+
+And now, when we get source, instead of getting the source from Azure Repos, we'll switch that over to my github repo holding my real code, click Save and Queue
+
+![](readmeImages/2018-11-12-15-40-24.png)
+
+![](readmeImages/2018-11-12-15-40-48.png)
+
+And this should start building my real code from github and sending it through the release pipeline all the way to my kubernetes cluster.
+
+And going back into the portal
+
+ [`Tab 6 - Ignite 2 DevOps Project Dashboard` ]
+
+![](readmeImages/2018-11-12-15-42-59.png)
+
+You can see that the code is being pulled from github, it's been built and deployed and here is my real app, deployed into my kubernetes cluster 
+
+![](readmeImages/2018-11-12-15-43-33.png)
+
+BAM!!!! And ALL Of this, with just a couple of clicks.
+
+So what have we've shown you all?
+
+   - We can easily build out CI/CD pipelines for any language targeting any platform
+   - We can easily impliment advanced DevOps techniques using Azure Pipelines and Azure
+   - We can even include automated deployment gates that utilize continuous monitoring to help us determine if a gate should pass or not
+   - And we can quickly scaffold out our CI/CD pipelines into Azure with just a couple of clicks using Azure DevOps Projects!
+
+Now all of these demos that I have shown are still relatively simple. How would all of this work with a real world application? Like with Tailwind Traders?
+
+The Tailwind Traders application consists of a node.js web front end with two microservices. The inventory service is a .net core micro service running in a docker container hosted in Azure App Service.  The product service is a node js micro service running in a docker container hosted in a kubernetes cluster. The web front end is a Node.js app hosted in Azure App Service. And finally, there is also an iOS mobile app front end as well. Can we use Azure Pipelines to build and release this real world scenario?
+
+ABSOLULTEY! Check this out
+
+[`Tab 7 - Tailwind Build All Up` ]
+https://dev.azure.com/azuredevopsdemo-a/AbelTailwindInventoryService/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=27
+![](readmeImages/2018-11-09-07-59-05.png) 
+
+Here is one build that builds ALL 4 parts of our application in parallel. We use a 
+hosted windows agent to build our .net core inventory service and we create a docker image out of it.
+
+![](readmeImages/2018-11-12-15-50-31.png)
+
+Next we use an ubuntu agent to build our node js product service container and then we create a helm package out of it
+
+![](readmeImages/2018-11-12-15-51-35.png)
+
+Next we use another ubuntu agent to build our node js Tailwind front end web application
+
+![](readmeImages/2018-11-12-15-52-12.png)
+
+And finally, we use one of our hosted mac agents to create our iOS application.
+
+1 build, 4 parallel agents building our app all at once. We are the ONLY cloud vender that will give you agents for all 3 platforms. Windows, Linux and Macs!!!!
+
+We can do the same thing with our release pipelines too.
+
+[`Tab 8 - Tailwind Release All Up` ]
+![](readmeImages/2018-11-12-16-11-47.png)
+
+Where we have one release with 4 parallel tracks. One track to deploy the inventory service as a container into App Service
+
+One track taking the Product Service and deploying that as a helm app in a Kubernetes Cluster
+
+One track that deploys the web front end as a static site sitting in App service and  finally, one track that takes the ios app and deploys it all the way out into the App Store.
+
+So real world? You bet. Using azure pipelines, you can deploy any app targeting any platform no matter how complex your app.  And as for release gates, here are some real world cases of using release gates.
 
 
+[`Tab 9 - Release Gate Docusign Example`]
 
+![](readmeImages/2018-11-09-09-10-39.png)
 
+I was recently at a hospital where they literally had a rule in place where they could not deploy into production without a physical document signed and uploaded to their docusign server. This was turning into a bottleneck as now, a physical person had to verify the document was signed before deployments into production could happen.  However, I also knew that Docusign had a rest api, so it was super simple to create a custom gate that checked to see if the document was signed.
+
+![](readmeImages/2018-11-12-16-17-21.png)
+
+So now, after the code is deployed into QA, tests were done, a human ok'd it, and now, the gate kicked in. When you set up a gate, you get to set up the polling frequency as well as the time out. So in this case, I pulled every 5 minutes checking to see if the document was signed. First time, wasn't signed. Second time, still wasn't signed. 15 minuytes later? Docuemnt was signed and the new deployment automatically deployed into the production environment.
+
+Another example of using these release gates is here, where I used Dynatrace monitoring to see if a release is good or not.
+
+[`Tab 10 - Release Gate Dynatrace Unbreakable Pipeline Pass`]
+
+![](readmeImages/2018-11-09-09-11-41.png)
+
+![](readmeImages/2018-11-12-16-19-51.png)
+
+In this example, code was deployed to staging, load test were run, and then the gate kicked in, where we use dynatrace to help us determine if the deployment was good or bad. In this case, all response times looked good, the gate passed and the code flowed into production.
+
+[`Tab 11 - Release Gate Dynatrace Unbreakable Pipeline Fail`]
+
+![](readmeImages/2018-11-09-09-12-34.png)
+
+![](readmeImages/2018-11-12-16-20-59.png)
+
+And here, after the code was deployed in staging and load tests were run, dynatrace detected enough annomolies that it said the release was bad, failing the gate, and the bad code never made it into production.
+
+So here you can see how using automated approval gates, you can use AI to help with your deployments. So all you devs out there, let's do this!!! Go to dev.azure.com and let's start building our CI/CD pipelines so we can all deploy faster yet safer!
