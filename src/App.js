@@ -11,5 +11,3 @@ const App = () => (
 );
 
 render(<App />, document.getElementById("root"));
-
-// this is just a comment
