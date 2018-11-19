@@ -1,6 +1,6 @@
 # Ignite 2018 Tour DevOps Session - Deploy your code faster yet safer (or something like that)
 
-This is the demo script for the DevOps session. In this session, we will cover  
+This is the demo script for the DevOps session. In this session, we will cover      
 
 - creating a CI Yaml based pipeline from Github to Azure Pipelines.
 - adding advanced devops best practices with AB Testing
