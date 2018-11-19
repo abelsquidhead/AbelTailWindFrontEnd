@@ -56,6 +56,7 @@ This demo will also use VSCode to make some code changes
 1. Change Testing In Production for ABTest slot to 0%
 1. Delete ABTest slot
 1. Delete az-pipelines.yml file
+1. Go to dev.azure.com/azuredevopsdemo-a/AbelIgnite2018Tour1 and change the build definition to get sources from the local repo
 1. go to `/src/style.css` and change background color. Uncomment line 10, comment line 11
 ![](readmeImages/2018-11-09-09-23-10.png)
 
