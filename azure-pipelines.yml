@@ -32,7 +32,8 @@ steps:
    INVENTORY_SERVICE_BASE_URL=https://abelinventoryserviceapi.azurewebsites.net
    EOF
    # Use the environment variables input below to pass secret variables to this script
-
+   DATABASE_USER=$(Database.User)
+   DATABASE_PASSWORD=$(Database.Password)
   displayName: 'Set up DB Connection'
 
 
