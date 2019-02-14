@@ -33,7 +33,7 @@ steps:
    EOF
    # Use the environment variables input below to pass secret variables to this script
    DATABASE_USER=$(Database.User)
-   DATABASE_PASSWORD=$(Database.Password)
+   DATABASE_PASSWORD=$(Database.Passsword)
   displayName: 'Set up DB Connection'
 
 
