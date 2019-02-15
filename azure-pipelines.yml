@@ -13,7 +13,7 @@ pool:
 
 
 steps:
-- task: 
+
 - task: Npm@1
 
   displayName: 'npm install'
