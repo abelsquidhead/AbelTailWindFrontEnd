@@ -782,3 +782,4 @@ In this example, code was deployed to staging, load test were run, and then the 
 And here, after the code was deployed in staging and load tests were run, dynatrace detected enough annomolies that it said the release was bad, failing the gate, and the bad code never made it into production.
 
 So here you can see how using automated approval gates, you can use AI to help with your deployments. So all you devs out there, let's do this!!! Go to dev.azure.com and let's start building our CI/CD pipelines so we can all deploy faster yet safer
+
