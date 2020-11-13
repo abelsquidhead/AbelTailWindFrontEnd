@@ -28,13 +28,13 @@ This session's demos are done using the browser and one instance of VSCode. Open
 1. `Tab 8 - Tailwind Release All Up` https://dev.azure.com/azuredevopsdemo-a/AbelTailwindInventoryService/_releaseDefinition?definitionId=1&_a=definition-pipeline
 ![](readmeImages/2018-11-09-09-09-09.png)
 1. `Tab 9 - Release Gate Docusign Example`
-https://msvstsdemo-a.visualstudio.com/YoCoreDemo/_releaseProgress?releaseId=10&_a=release-pipeline-progress
+https://msvstsdemo-a.visualstudio.com/YoCoreDemo/_releaseProgress?releaseId=10&_a=release-pipeline-progress&WT.mc_id=dotnet-0000-abewan
 ![](readmeImages/2018-11-09-09-10-39.png)
 1. `Tab 10 - Release Gate Dynatrace Unbreakable Pipeline Pass`
-https://msvstsdemo-a.visualstudio.com/AbelUnbreakablePipelineDemo/_releaseProgress?releaseId=275&_a=release-pipeline-progress
+https://msvstsdemo-a.visualstudio.com/AbelUnbreakablePipelineDemo/_releaseProgress?releaseId=275&_a=release-pipeline-progress&WT.mc_id=dotnet-0000-abewan
 ![](readmeImages/2018-11-09-09-11-41.png)
 1. `Tab 11 - Release Gate Dynatrace Unbreakable Pipeline Fail`
-https://msvstsdemo-a.visualstudio.com/AbelUnbreakablePipelineDemo/_releaseProgress?releaseId=276&_a=release-pipeline-progress
+https://msvstsdemo-a.visualstudio.com/AbelUnbreakablePipelineDemo/_releaseProgress?releaseId=276&_a=release-pipeline-progress&WT.mc_id=dotnet-0000-abewan
 ![](readmeImages/2018-11-09-09-12-34.png)
 
 Open up another instance of a different browser. If you opened up the first set using chrome, open up another browser using firefox or edge and in this browser have 2 tabs
