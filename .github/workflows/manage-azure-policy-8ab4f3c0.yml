@@ -1,0 +1,46 @@
+name: manage-azure-policy-8ab4f3c0
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/Disk_encryption_should_be_enabled_on_Azure_Data_Explorer_f4b53539-8df9-40e4-86c6-6b607703bd4e/**'
+#      - 'policies/Azure_Data_Explorer_encryption_at_rest_should_use_a_customer-managed_key_81e74cea-30fd-40d5-802f-d72103c2aaaa/**'
+#      - 'policies/App_Configuration_should_use_private_link_ca610c1d-041c-4332-9d88-7ed3094967c7/**'
+#      - 'policies/Double_encryption_should_be_enabled_on_Azure_Data_Explorer_ec068d99-e9c7-401f-8cef-5bdde4e6ccf1/**'
+#      - 'initiatives/_Preview_NIST_SP_800-171_R2_03055927-78bd-4236-86c0-f36125a10dc9/**'
+#      - 'initiatives/Audit_machines_with_insecure_password_security_settings_095e4ed9-c835-4ab6-9439-b5644362a06c/**'
+#      - 'initiatives/IRS1075_September_2016_105e0327-6175-4eb2-9af4-1fba43bdb39d/**'
+#      - 'initiatives/_Preview_Deploy_prerequisites_to_enable_Guest_Configuration_policies_on_virtual_machines_12794019-7a00-42cf-95c2-882eed337cc8/**'
+#      - .github/workflows/manage-azure-policy-8ab4f3c0.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_8ab4f3c0}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/Disk_encryption_should_be_enabled_on_Azure_Data_Explorer_f4b53539-8df9-40e4-86c6-6b607703bd4e/**
+          policies/Azure_Data_Explorer_encryption_at_rest_should_use_a_customer-managed_key_81e74cea-30fd-40d5-802f-d72103c2aaaa/**
+          policies/App_Configuration_should_use_private_link_ca610c1d-041c-4332-9d88-7ed3094967c7/**
+          policies/Double_encryption_should_be_enabled_on_Azure_Data_Explorer_ec068d99-e9c7-401f-8cef-5bdde4e6ccf1/**
+          initiatives/_Preview_NIST_SP_800-171_R2_03055927-78bd-4236-86c0-f36125a10dc9/**
+          initiatives/Audit_machines_with_insecure_password_security_settings_095e4ed9-c835-4ab6-9439-b5644362a06c/**
+          initiatives/IRS1075_September_2016_105e0327-6175-4eb2-9af4-1fba43bdb39d/**
+          initiatives/_Preview_Deploy_prerequisites_to_enable_Guest_Configuration_policies_on_virtual_machines_12794019-7a00-42cf-95c2-882eed337cc8/**
